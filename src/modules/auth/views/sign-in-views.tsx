@@ -131,10 +131,21 @@ const SignInView = () => {
 
           {/* Social Login Buttons */}
           <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline" className="h-11 bg-gray-50 hover:bg-gray-100 border-gray-200">
+            <Button
+            onClick={()=>{
+                authClient.signIn.social({
+                    provider:"google"
+                })
+            }}
+             variant="outline" className="h-11 bg-gray-50 hover:bg-gray-100 border-gray-200">
               Google
             </Button>
-            <Button variant="outline" className="h-11 bg-gray-50 hover:bg-gray-100 border-gray-200">
+            <Button  onClick={()=>{
+                authClient.signIn.social({
+                    provider:"github"
+                })
+            }}
+             variant="outline" className="h-11 bg-gray-50 hover:bg-gray-100 border-gray-200">
               Github
             </Button>
           </div>
