@@ -1,9 +1,12 @@
 "use client"
 import { authClient } from '@/lib/auth-client'
 import React from 'react'
+import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 
-const page = () => {
+const HomeView = () => {
   const [session, setSession] = React.useState<any>(null)
+  const router = useRouter();
 
   React.useEffect(() => {
     const getSession = async () => {
@@ -18,12 +21,13 @@ const page = () => {
   if (!session) {
     return <div>Loading...</div>
   }
-
   return (
+
     <div>
-      User is logged in as {session.user.name}
+      <Button onClick={()=>authClient.signOut({fetchOptions:{onSuccess:()=> router.push('/sign-in')}})}>Sing out</Button>
+         
     </div>
   )
 }
 
-export default page
+export default HomeView
